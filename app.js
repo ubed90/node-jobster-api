@@ -41,7 +41,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 
 // FrontEnd
 app.set('trust proxy', 1)
-app.use(express.static(path.resolve(__dirname, './client/build')))
+app.use(express.static(path.resolve(__dirname, './client')))
 app.use(express.json())
 app.use(helmet())
 // ! Not required in Jobster
@@ -60,7 +60,7 @@ app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
 // ! Serve index.html for every route other than API ROute
 app.get('*', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
+  return res.sendFile(path.resolve(__dirname, './client', 'index.html'))
 })
 
 app.use(notFoundMiddleware)
